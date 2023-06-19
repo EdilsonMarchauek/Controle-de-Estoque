@@ -1,7 +1,46 @@
 from tkinter import *
 
-def btn_clicked():
-    print("Button Clicked")
+
+# procurar insumo
+def btn_clicked0():
+    # pegar a informação do campo nome_insumo(entry1)
+    # buscar essa informação do insumo no banco de dados
+    # colocar no entry0 (caixa de texto) as informações do insumo no banco de dados
+    print("Procurar Insumo")
+
+
+# deletar insumo
+def btn_clicked1():
+    # pegar a informação do campo nome_insumo(entry1)
+    # buscar e deletar a informação do insumo no banco de dados
+    # exibir um amensagem dizendo que deletou o insumo no banco de dados
+    print("Deletar Insumo")
+
+
+# consumir insumo
+def btn_clicked2():
+    # pegar a informação do campo nome_insumo(entry1)
+    # pegar a informação do campo qtde(entry4)
+    # buscar o insumo pelo nome dele no banco de dados
+    # diminuir da quantidade de insumo, a quantidade que eu consumi
+    # exibir uma mensagem dizendo quantas unidades eu consumi do banco de dados
+    print("Usar Insumo")
+
+
+# adicionar insumo
+def btn_clicked3():
+    # pegar todos os campos
+    # adicionar no banco de dados aquele insumo
+    print("Adicionar Insumo")
+
+
+# print(entry1.get()) -> nome_insumo
+# print(entry2.get()) -> data_validade
+# print(entry3.get()) -> lote
+# print(entry4.get()) -> quantidade
+# 1.0 -> primeira linha na posição zero
+# print(entry0.get("1.0", END)) -> campo para exibir o produto no banco de dados
+
 
 window = Tk()
 
@@ -27,7 +66,7 @@ b0 = Button(
     image = img0,
     borderwidth = 0,
     highlightthickness = 0,
-    command = btn_clicked,
+    command = btn_clicked0,
     relief = "flat")
 
 b0.place(
@@ -40,7 +79,7 @@ b1 = Button(
     image = img1,
     borderwidth = 0,
     highlightthickness = 0,
-    command = btn_clicked,
+    command = btn_clicked1,
     relief = "flat")
 
 b1.place(
@@ -53,7 +92,7 @@ b2 = Button(
     image = img2,
     borderwidth = 0,
     highlightthickness = 0,
-    command = btn_clicked,
+    command = btn_clicked2,
     relief = "flat")
 
 b2.place(
@@ -66,7 +105,7 @@ b3 = Button(
     image = img3,
     borderwidth = 0,
     highlightthickness = 0,
-    command = btn_clicked,
+    command = btn_clicked3,
     relief = "flat")
 
 b3.place(
