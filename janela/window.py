@@ -8,19 +8,20 @@ cursor = conexao.cursor()
 
 # procurar insumo
 def btn_clicked0():
-    # pegar a informação do campo nome_insumo(entry1)
+    # pegar a informação do campo nome_insumo (entry1)
     nome_insumo = entry1.get()
     # buscar essa informação do insumo no banco de dados
     # colocar no entry0 (caixa de texto) as informações do insumo no banco de dados
     print("Procurar Insumo")
     comando = f"""SELECT * from insumos
-                WHERE nome_insumo = '{nome_insumo}';
-                """
+            WHERE nome_insumo = '{nome_insumo}';
+            """
     cursor.execute(comando)
+    #   0     1           2         3           4
     # [(1, 'garrafa', '2050-12-31', 1, Decimal('9500.00'))]
-    # entry0.delete("1.0", END)
+    entry0.delete("1.0", END)
     for linha in cursor.fetchall():
-        texto = f"Item: {linha.nome_insumo}\n Quantidade: {linha.qtde}\n Lote:{linha.lote}\n Validade:{linha.data_validade}\n"
+        texto = f"Item: {linha[1]}\n Quantidade: {linha[4]}\n Lote:{linha[3]}\n Validade:{linha[2]}\n"
         entry0.insert("1.0", texto)
 
 
@@ -67,6 +68,11 @@ def btn_clicked3():
     lote = entry3.get()
     qtde = entry4.get()
 
+    # rodar um procurar no banco de dados pelo insumo
+    # olhar o cursor.fetchall()
+    # se o insumo tiver dentro do cursor.fetchall()
+    # faço um update adicionando a quantidade
+    # caso contrário
     # adicionar no banco de dados aquele insumo
     comando = f"""INSERT INTO insumos(nome_insumo, data_validade, lote, qtde)
         VALUES
