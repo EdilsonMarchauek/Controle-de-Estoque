@@ -13,6 +13,15 @@ def btn_clicked0():
     # buscar essa informação do insumo no banco de dados
     # colocar no entry0 (caixa de texto) as informações do insumo no banco de dados
     print("Procurar Insumo")
+    comando = f"""SELECT * from insumos
+                WHERE nome_insumo = '{nome_insumo}';
+                """
+    cursor.execute(comando)
+    # [(1, 'garrafa', '2050-12-31', 1, Decimal('9500.00'))]
+    # entry0.delete("1.0", END)
+    for linha in cursor.fetchall():
+        texto = f"Item: {linha.nome_insumo}\n Quantidade: {linha.qtde}\n Lote:{linha.lote}\n Validade:{linha.data_validade}\n"
+        entry0.insert("1.0", texto)
 
 
 # deletar insumo
@@ -21,7 +30,14 @@ def btn_clicked1():
     nome_insumo = entry1.get()
     # buscar e deletar a informação do insumo no banco de dados
     # exibir um amensagem dizendo que deletou o insumo no banco de dados
+    comando = f"""DELETE from insumos
+                WHERE nome_insumo = '{nome_insumo}';
+                """
+    cursor.execute(comando)
+    conexao.commit()
     print("Deletar Insumo")
+    tkinter.messagebox.showinfo(title="Aviso Insumo Excluído",
+                                message=f"{nome_insumo} foi excluído do Banco de Dados")
 
 
 # consumir insumo
