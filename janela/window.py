@@ -1,6 +1,6 @@
 from tkinter import *
 import tkinter.messagebox
-from conection import conexao
+from conf.conection import conexao
 
 cursor = conexao.cursor()
 # nome da tabela -> insumos
