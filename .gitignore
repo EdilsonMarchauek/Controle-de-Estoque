@@ -162,3 +162,5 @@ cython_debug/
 anotacoes.txt
 comandosSQLServer.txt
 comandos_SQL.py
+conection.py
+ler-bd.py

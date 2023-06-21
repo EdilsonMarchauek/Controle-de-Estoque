@@ -1,9 +1,15 @@
 from tkinter import *
+import tkinter.messagebox
+from conection import conexao
+
+cursor = conexao.cursor()
+# nome da tabela -> insumos
 
 
 # procurar insumo
 def btn_clicked0():
     # pegar a informação do campo nome_insumo(entry1)
+    nome_insumo = entry1.get()
     # buscar essa informação do insumo no banco de dados
     # colocar no entry0 (caixa de texto) as informações do insumo no banco de dados
     print("Procurar Insumo")
@@ -12,6 +18,7 @@ def btn_clicked0():
 # deletar insumo
 def btn_clicked1():
     # pegar a informação do campo nome_insumo(entry1)
+    nome_insumo = entry1.get()
     # buscar e deletar a informação do insumo no banco de dados
     # exibir um amensagem dizendo que deletou o insumo no banco de dados
     print("Deletar Insumo")
@@ -21,8 +28,17 @@ def btn_clicked1():
 def btn_clicked2():
     # pegar a informação do campo nome_insumo(entry1)
     # pegar a informação do campo qtde(entry4)
+    nome_insumo = entry1.get()
+    qtde_usada = entry4.get()
     # buscar o insumo pelo nome dele no banco de dados
     # diminuir da quantidade de insumo, a quantidade que eu consumi
+    comando = f"""UPDATE insumos
+            SET qtde = qtde - {qtde_usada}
+            WHERE nome_insumo = '{nome_insumo}';
+            """
+    cursor.execute(comando)
+    conexao.commit()
+    tkinter.messagebox.showinfo(title="Aviso Uso Insumo", message=f"{qtde_usada} unidades do {nome_insumo} foram usadas")
     # exibir uma mensagem dizendo quantas unidades eu consumi do banco de dados
     print("Usar Insumo")
 
@@ -30,8 +46,23 @@ def btn_clicked2():
 # adicionar insumo
 def btn_clicked3():
     # pegar todos os campos
+    nome_insumo = entry1.get()
+    data_validade = entry2.get()
+    lote = entry3.get()
+    qtde = entry4.get()
+
     # adicionar no banco de dados aquele insumo
+    comando = f"""INSERT INTO insumos(nome_insumo, data_validade, lote, qtde)
+        VALUES
+            ('{nome_insumo}', '{data_validade}', '{lote}', '{qtde}')"""
+    cursor.execute(comando)
+    conexao.commit()
+    tkinter.messagebox.showinfo(title="Aviso Adiconar Produto", message="Produto Adicionado com Sucesso")
     print("Adicionar Insumo")
+    # entry1.delete()
+    # entry2.delete()
+    # entry3.delete()
+    # entry4.delete()
 
 
 # print(entry1.get()) -> nome_insumo
