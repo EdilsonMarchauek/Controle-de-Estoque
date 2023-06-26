@@ -160,7 +160,7 @@ cython_debug/
 #.idea/
 
 comandos_SQL.py
-conf/conection.py
-conf/ler-bd.py
+janela/conf/conection.py
+janela/conf/ler-bd.py
 anotacoes.txt
 comandosSQLServer.txt
